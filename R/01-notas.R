@@ -18,6 +18,8 @@ Links de interés
 
 Para crear un proyecto
 #usethis::create_project("user.Rproj")
+Para crear un proyecto en home y te sales del proyecto actual
+##usethis::create_project("~/user.Rproj")
 
 Para crear un directorio
 #makedir()
