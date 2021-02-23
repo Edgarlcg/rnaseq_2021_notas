@@ -17,7 +17,7 @@ Links de interés
 #https://r-graphics.org/
 
 Para crear un proyecto
-#usethis::create_project("Su_Usuario.github.io")
+#usethis::create_project("user.Rproj")
 
 Para crear un directorio
 #makedir()
@@ -44,8 +44,8 @@ gitcreds::gitcreds_set() ## Ojo, copia el token, no tu password de git!
 ## Configura tu usuario de GitHub
 usethis::edit_git_config()
 # [user]
-#   name = Leonardo Collado Torres
-#   email = lcolladotor@gmail.com
+#   name = Edgalcg
+#   email = jlealriv@lcg.unam.mx
 
 ## Para inicializar el repositorio de Git
 usethis::use_git()
