@@ -1,0 +1,34 @@
+---
+title: "PackagesBioC3.12"
+author: "Edgar Leal"
+date: "23/2/2021"
+output: html_document
+---
+# aggregateBioVar
+Author: Jason Ratcliff [aut, cre] , Andrew Thurman [aut], Michael Chimenti [ctb], Alejandro Pezzulo [ctb]
+
+For single cell RNA-seq data collected from more than one subject (e.g. biological sample or technical replicates), this package contains tools to summarize single cell gene expression profiles at the level of subject. A SingleCellExperiment object is taken as input and converted to a list of SummarizedExperiment objects, where each list element corresponds to an assigned cell type. 
+
+
+Tiene varias dudas, y el autor resuelve todas las dudas, ofrece cosas diferentes a otros paquetes afines de SingleCell.
+No hay problemas de instalación reportados para Windows, MacOS y Linux
+
+Además, su documentación es muy entendible.
+
+[BioConductorFuente](http://bioconductor.org/packages/release/bioc/html/aggregateBioVar.html)
+[DOI](10.18129/B9.bioc.aggregateBioVar)
+
+
+
+# CellaRepertorium
+Author: Andrew McDavid [aut, cre], Yu Gu [aut], Erik VonKaenel [aut], Thomas Lin Pedersen [ctb]
+Maintainer: Andrew McDavid <Andrew_McDavid at urmc.rochester.edu
+
+Methods to cluster and analyze high-throughput single cell immune cell repertoires, especially from the 10X Genomics VDJ solution. Contains an R interface to CD-HIT (Li and Godzik 2006). Methods to visualize and analyze paired heavy-light chain data. Tests for specific expansion, as well as omnibus oligoclonality under hypergeometric models.
+
+Tiene una documentación muy bien planeada, tiene varios comentarios de dudas. Son muy puntuales y es entendible ya que es para sets de datos muy específicos. No tienen problemas en instalación para ningún SO.
+Lo que más me gustó es que tiene una interfaz.
+
+
+[BioConductorFuente](http://bioconductor.org/packages/release/bioc/html/CellaRepertorium.html)
+[DOI](10.18129/B9.bioc.CellaRepertorium)
