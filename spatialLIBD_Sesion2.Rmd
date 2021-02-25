@@ -1,0 +1,46 @@
+---
+title: "iSEE y spatialLIBD"
+author: "Edgar Leal"
+date: "24/2/2021"
+output: html_document
+---
+```{r}
+library(spatialLIBD)
+```
+
+
+Vamos a descargar datos de un objeto SingleCellExperiment que es similar a uno de SummarizedExperiment.
+```{r}
+## Descarguemos unos datos de spatialLIBD
+sce_layer <- spatialLIBD::fetch_data("sce_layer")
+```
+
+```{r}
+sce_layer
+```
+
+
+```{r}
+## Revisemos el tamaño de este objeto
+pryr::object_size(sce_layer)
+```
+
+
+Como comentario para poder hhacer el knit a html
+```{r}
+#iSEE::iSEE(sce_layer)
+```
+
+Descarga en un pdf la imagen en clase usando iSEE,
+
+Explora en con un heatmap la expresión de los genes MOBP, MBP y PCP4. Si hacemos un clustering (agrupamos los genes), ¿cúales genes se parecen más?
+
+*El gen ENSG00000168314 y ENSG00000197971*
+
+¿En qué capas se expresan más los genes MOBP y MBP?
+*En 151676, layer 6 WM*
+
+
+Las visualizaciones se encuentran en ReducedDimensionPlot1.pdf y ComplexHeatMap1.pdf en este proyecto
+
+
