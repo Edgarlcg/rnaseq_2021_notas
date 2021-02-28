@@ -467,6 +467,12 @@ library(&quot;SummarizedExperiment&quot;)</code></pre>
 ## [25] 0.01763812 0.01863811 0.01994997 0.01395675 0.01194392 0.01992634
 ## [31] 0.01297116 0.01754904 0.01680911 0.01406832 0.01624636 0.01691871
 ## [37] 0.01714664 0.02593057 0.02713031 0.01533612</code></pre>
+<pre class="r"><code>## Elimir el diagnosis &quot;Other&quot; porque no tiene información para poder hacer el estadístico
+rse_gene$PrimaryDx &lt;- droplevels(rse_gene$PrimaryDx)
+table(rse_gene$PrimaryDx)</code></pre>
+<pre><code>## 
+## Bipolar Control 
+##      20      20</code></pre>
 <pre class="r"><code>statistics&lt;-model.matrix(~ totalAssignedGene + mitoRate + PrimaryDx, data=colData(rse_gene))
 statistics</code></pre>
 <pre><code>##                  (Intercept) totalAssignedGene   mitoRate PrimaryDxControl
@@ -510,49 +516,8 @@ statistics</code></pre>
 ## R15093_HFY2MBBXX           1        0.37346129 0.02593057                0
 ## R15120_HFY2MBBXX           1        0.29146334 0.02713031                1
 ## R15134_HFFGHBBXX           1        0.39082003 0.01533612                1
-##                  PrimaryDxOther
-## R13896_H7JKMBBXX              0
-## R13903_HCTYLBBXX              0
-## R13904_H7K5NBBXX              0
-## R13983_H7JKMBBXX              0
-## R13985_H7JM5BBXX              0
-## R13986_H7JM5BBXX              0
-## R13995_H7JHNBBXX              0
-## R14017_HF5JNBBXX              0
-## R14023_H7JHNBBXX              0
-## R14030_H7K5NBBXX              0
-## R14031_HF5JNBBXX              0
-## R14039_H7K5NBBXX              0
-## R14069_HCTYLBBXX              0
-## R14071_HF3JYBBXX              0
-## R14073_HF3JYBBXX              0
-## R14077_HCTYLBBXX              0
-## R14091_HFY2MBBXX              0
-## R14102_H7K5NBBXX              0
-## R14125_H7JM5BBXX              0
-## R14129_HCTYLBBXX              0
-## R14136_H7K5NBBXX              0
-## R14156_H7JHNBBXX              0
-## R14184_H7K5NBBXX              0
-## R14202_H7K5NBBXX              0
-## R14223_HF5JNBBXX              0
-## R14225_HF3JYBBXX              0
-## R14238_HF5JNBBXX              0
-## R14247_HF3JYBBXX              0
-## R14279_HFY2MBBXX              0
-## R14290_H7L3FBBXX              0
-## R14296_H7JLCBBXX              0
-## R14304_H7JKMBBXX              0
-## R14995_HFFGHBBXX              0
-## R15016_HF5JNBBXX              0
-## R15058_HF5JNBBXX              0
-## R15068_HFFGHBBXX              0
-## R15090_HF5JNBBXX              0
-## R15093_HFY2MBBXX              0
-## R15120_HFY2MBBXX              0
-## R15134_HFFGHBBXX              0
 ## attr(,&quot;assign&quot;)
-## [1] 0 1 2 3 3
+## [1] 0 1 2 3
 ## attr(,&quot;contrasts&quot;)
 ## attr(,&quot;contrasts&quot;)$PrimaryDx
 ## [1] &quot;contr.treatment&quot;</code></pre>
@@ -666,6 +631,63 @@ df</code></pre>
 <pre><code>## Warning: package &#39;SingleCellExperiment&#39; was built under R version 4.0.3</code></pre>
 <pre class="r"><code>iSEE::iSEE(rse_gene)</code></pre>
 <p><div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div></p>
+<pre class="r"><code># Para el model estadístico exploremos la información de las muestras
+colnames(colData(rse_gene))</code></pre>
+<pre><code>##  [1] &quot;SAMPLE_ID&quot;                          &quot;FQCbasicStats&quot;                     
+##  [3] &quot;perBaseQual&quot;                        &quot;perTileQual&quot;                       
+##  [5] &quot;perSeqQual&quot;                         &quot;perBaseContent&quot;                    
+##  [7] &quot;GCcontent&quot;                          &quot;Ncontent&quot;                          
+##  [9] &quot;SeqLengthDist&quot;                      &quot;SeqDuplication&quot;                    
+## [11] &quot;OverrepSeqs&quot;                        &quot;AdapterContent&quot;                    
+## [13] &quot;KmerContent&quot;                        &quot;SeqLength_R1&quot;                      
+## [15] &quot;percentGC_R1&quot;                       &quot;phred20-21_R1&quot;                     
+## [17] &quot;phred48-49_R1&quot;                      &quot;phred76-77_R1&quot;                     
+## [19] &quot;phred100-101_R1&quot;                    &quot;phredGT30_R1&quot;                      
+## [21] &quot;phredGT35_R1&quot;                       &quot;Adapter50-51_R1&quot;                   
+## [23] &quot;Adapter70-71_R1&quot;                    &quot;Adapter90_R1&quot;                      
+## [25] &quot;SeqLength_R2&quot;                       &quot;percentGC_R2&quot;                      
+## [27] &quot;phred20-21_R2&quot;                      &quot;phred48-49_R2&quot;                     
+## [29] &quot;phred76-77_R2&quot;                      &quot;phred100-101_R2&quot;                   
+## [31] &quot;phredGT30_R2&quot;                       &quot;phredGT35_R2&quot;                      
+## [33] &quot;Adapter50-51_R2&quot;                    &quot;Adapter70-71_R2&quot;                   
+## [35] &quot;Adapter90_R2&quot;                       &quot;bamFile&quot;                           
+## [37] &quot;trimmed&quot;                            &quot;numReads&quot;                          
+## [39] &quot;numMapped&quot;                          &quot;numUnmapped&quot;                       
+## [41] &quot;overallMapRate&quot;                     &quot;concordMapRate&quot;                    
+## [43] &quot;totalMapped&quot;                        &quot;mitoMapped&quot;                        
+## [45] &quot;mitoRate&quot;                           &quot;totalAssignedGene&quot;                 
+## [47] &quot;gene_Assigned&quot;                      &quot;gene_Unassigned_Unmapped&quot;          
+## [49] &quot;gene_Unassigned_Read_Type&quot;          &quot;gene_Unassigned_Singleton&quot;         
+## [51] &quot;gene_Unassigned_MappingQuality&quot;     &quot;gene_Unassigned_Chimera&quot;           
+## [53] &quot;gene_Unassigned_FragmentLength&quot;     &quot;gene_Unassigned_Duplicate&quot;         
+## [55] &quot;gene_Unassigned_MultiMapping&quot;       &quot;gene_Unassigned_Secondary&quot;         
+## [57] &quot;gene_Unassigned_NonSplit&quot;           &quot;gene_Unassigned_NoFeatures&quot;        
+## [59] &quot;gene_Unassigned_Overlapping_Length&quot; &quot;gene_Unassigned_Ambiguity&quot;         
+## [61] &quot;rRNA_rate&quot;                          &quot;BrainRegion&quot;                       
+## [63] &quot;Race&quot;                               &quot;PrimaryDx&quot;                         
+## [65] &quot;Sex&quot;                                &quot;AgeDeath&quot;                          
+## [67] &quot;BrNum&quot;</code></pre>
+<pre class="r"><code>## Podemos usar región del cerebro porque tenemos suficientes datos
+table(rse_gene$BrainRegion)</code></pre>
+<pre><code>## 
+## Amygdala     sACC 
+##       20       20</code></pre>
+<pre class="r"><code>mod &lt;- with(
+    colData(rse_gene),
+    model.matrix(~ PrimaryDx + totalAssignedGene + mitoRate + rRNA_rate + BrainRegion + Sex + AgeDeath)
+)
+## Exploremos el modelo de forma interactiva
+if (interactive()) {
+    ## Tenemos que eliminar columnas que tienen NAs.
+    info_no_NAs &lt;- colData(rse_gene)[, c(
+        &quot;PrimaryDx&quot;, &quot;totalAssignedGene&quot;, &quot;BrainRegion&quot;, &quot;Sex&quot;,
+        &quot;mitoRate&quot;
+    )]
+    ExploreModelMatrix::ExploreModelMatrix(
+        info_no_NAs,
+        ~ PrimaryDx + totalAssignedGene + mitoRate + rRNA_rate + BrainRegion + Sex + AgeDeath
+    )
+}</code></pre>
 
 
 

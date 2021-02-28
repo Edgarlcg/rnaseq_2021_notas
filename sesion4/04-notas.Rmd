@@ -25,6 +25,11 @@ rse_gene$mitoRate
 ```
 
 ```{r}
+## Elimir el diagnosis "Other" porque no tiene información para poder hacer el estadístico
+rse_gene$PrimaryDx <- droplevels(rse_gene$PrimaryDx)
+table(rse_gene$PrimaryDx)
+
+
 statistics<-model.matrix(~ totalAssignedGene + mitoRate + PrimaryDx, data=colData(rse_gene))
 statistics
 ```
@@ -41,5 +46,31 @@ df
 ```{r}
 library("iSEE")
 iSEE::iSEE(rse_gene)
+```
+
+
+```{r}
+# Para el model estadístico exploremos la información de las muestras
+colnames(colData(rse_gene))
+## Podemos usar región del cerebro porque tenemos suficientes datos
+table(rse_gene$BrainRegion)
+```
+```{r}
+mod <- with(
+    colData(rse_gene),
+    model.matrix(~ PrimaryDx + totalAssignedGene + mitoRate + rRNA_rate + BrainRegion + Sex + AgeDeath)
+)
+## Exploremos el modelo de forma interactiva
+if (interactive()) {
+    ## Tenemos que eliminar columnas que tienen NAs.
+    info_no_NAs <- colData(rse_gene)[, c(
+        "PrimaryDx", "totalAssignedGene", "BrainRegion", "Sex",
+        "mitoRate"
+    )]
+    ExploreModelMatrix::ExploreModelMatrix(
+        info_no_NAs,
+        ~ PrimaryDx + totalAssignedGene + mitoRate + rRNA_rate + BrainRegion + Sex + AgeDeath
+    )
+}
 ```
 
