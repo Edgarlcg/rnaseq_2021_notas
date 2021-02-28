@@ -1,0 +1,45 @@
+---
+title: "Sesion4"
+author: "Edgar Leal"
+date: "26/2/2021"
+output: html_document
+---
+
+```{r}
+speaqeasy_data <- file.path(tempdir(), "rse_speaqeasy.RData")
+download.file("https://github.com/LieberInstitute/SPEAQeasy-example/blob/master/rse_speaqeasy.RData?raw=true", speaqeasy_data, mode = "wb")
+library("SummarizedExperiment")
+load(speaqeasy_data, verbose = TRUE)
+```
+
+```{r}
+rse_gene
+```
+
+```{r}
+rse_gene$totalAssignedGene
+```
+
+```{r}
+rse_gene$mitoRate
+```
+
+```{r}
+statistics<-model.matrix(~ totalAssignedGene + mitoRate + PrimaryDx, data=colData(rse_gene))
+statistics
+```
+
+```{r}
+rowRanges(rse_gene)
+coord <- which(rowRanges(rse_gene)$Symbol == "SNAP25")
+coord
+df <- data.frame(
+    Expression = assay(rse_gene)[coord, ],
+    Dx = rse_gene$PrimaryDx)
+df
+```
+```{r}
+library("iSEE")
+iSEE::iSEE(rse_gene)
+```
+
